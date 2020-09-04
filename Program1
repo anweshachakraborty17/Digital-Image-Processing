@@ -1,0 +1,44 @@
+#include<stdio.h>
+#include<conio.h>
+#include<stdlib.h>
+
+void main(){
+	FILE *fp, *fp1;
+	
+	int row, col, sizeR, sizeC;
+	row = 256; //225
+	col = 256; //225
+	sizeR = row + 50;
+	sizeC = col + 50;
+
+	int img[sizeR][sizeC], img1[sizeR][sizeC];
+	int i, j, d;
+	fp = fopen("input.txt", "r");
+	
+
+	//read
+	for(i=1; i<=row; i++){
+		for(j=1; j<=col; j++){
+			fscanf(fp, "%d ",&d );
+			img[i][j]= d;
+		}
+	}
+	
+	//process
+	for(i=1; i<=row; i++){
+		for(j=1; j<=col; j++){
+			img1[i][j] = 255 - img[i][j];
+		}
+	}
+	
+	//out
+	fp1 = fopen("output.txt","w");
+	for(i=1; i<=row; i++){
+		for(j=1; j<=col; j++){
+			fprintf(fp1, "%d ",img1[i][j] );
+		}
+	}
+	
+	
+	//return 0;
+}
